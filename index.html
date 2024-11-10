@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your App</title>
+</head>
+<body>
+    <h1>Welcome to the App!</h1>
+    <button onclick="connectWallet()">Connect Wallet</button>
+    <button onclick="bindPhone()">Bind Phone</button>
+    <script>
+        function connectWallet() {
+            alert("Wallet connected!");
+            // Здесь добавим код для подключения к TON позже
+        }
+
+        function bindPhone() {
+            // Отправим запрос в Telegram бот для привязки номера телефона
+            const phoneNumber = prompt("Please enter your phone number");
+            if (phoneNumber) {
+                fetch('/bind_phone', {
+                    method: 'POST',
+                    body: JSON.stringify({ phone: phoneNumber }),
+                    headers: { 'Content-Type': 'application/json' }
+                }).then(response => response.json())
+                  .then(data => alert("Phone number bound successfully!"))
+                  .catch(error => alert("Error binding phone number: " + error));
+            }
+        }
+    </script>
+</body>
+</html>
