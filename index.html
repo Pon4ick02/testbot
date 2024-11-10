@@ -8,11 +8,21 @@
 <body>
     <h1>Welcome to the App!</h1>
     <button onclick="connectWallet()">Connect Wallet</button>
-    <script>
-        function connectWallet() {
+   <script src="https://cdn.jsdelivr.net/npm/tonweb@2.0.0"></script>
+<script>
+    async function connectWallet() {
+        try {
+            const tonweb = new TonWeb();
+            const wallet = tonweb.wallet.create({ publicKey: 'your-public-key' });
+            const result = await wallet.connect(); // подключаем кошелек
+
             alert("Wallet connected!");
-            // Здесь добавим код для подключения к TON позже
+            // Отправь информацию о привязке на сервер или Telegram
+        } catch (error) {
+            alert("Error connecting wallet: " + error.message);
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
