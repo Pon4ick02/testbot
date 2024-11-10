@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your App</title>
@@ -8,21 +8,26 @@
 <body>
     <h1>Welcome to the App!</h1>
     <button onclick="connectWallet()">Connect Wallet</button>
-   <script src="https://cdn.jsdelivr.net/npm/tonweb@2.0.0"></script>
-<script>
-    async function connectWallet() {
-        try {
-            const tonweb = new TonWeb();
-            const wallet = tonweb.wallet.create({ publicKey: 'your-public-key' });
-            const result = await wallet.connect(); // подключаем кошелек
-
+    <button onclick="bindPhone()">Bind Phone</button>
+    <script>
+        function connectWallet() {
             alert("Wallet connected!");
-            // Отправь информацию о привязке на сервер или Telegram
-        } catch (error) {
-            alert("Error connecting wallet: " + error.message);
+            // Здесь добавим код для подключения к TON позже
         }
-    }
-</script>
 
+        function bindPhone() {
+            // Отправим запрос в Telegram бот для привязки номера телефона
+            const phoneNumber = prompt("Please enter your phone number");
+            if (phoneNumber) {
+                fetch('/bind_phone', {
+                    method: 'POST',
+                    body: JSON.stringify({ phone: phoneNumber }),
+                    headers: { 'Content-Type': 'application/json' }
+                }).then(response => response.json())
+                  .then(data => alert("Phone number bound successfully!"))
+                  .catch(error => alert("Error binding phone number: " + error));
+            }
+        }
+    </script>
 </body>
 </html>
