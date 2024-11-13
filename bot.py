@@ -5,7 +5,7 @@ TOKEN = "7654469961:AAFYoQGShhojE9FMK8D9-l1K4q2vDKUuSgI"
 
 async def start(update: Update, context: CallbackContext):
     keyboard = [
-        [InlineKeyboardButton("Подключить кошелек", web_app=WebAppInfo(url="https://testbot-virid-seven.vercel.app/"))]
+        [InlineKeyboardButton("Подключить кошелек", web_app=WebAppInfo(url="https://testbot-8pnu.vercel.app/"))]
     ]
     await update.message.reply_text("Нажмите, чтобы подключить кошелек:", reply_markup=InlineKeyboardMarkup(keyboard))
 
