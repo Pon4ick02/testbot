@@ -13,22 +13,26 @@
     <script>
         // Функция для подключения кошелька
         function connectWallet() {
-            // Проверяем, доступен ли объект Telegram WebApp
-            if (window.Telegram && window.Telegram.WebApp) {
-                console.log("WebApp доступен, пытаемся подключить кошелек...");
-                const tonConnect = new TonConnect();
-                tonConnect.connect()
-                    .then(() => {
-                        window.Telegram.WebApp.sendData("Кошелек подключен");
-                        alert("Кошелек подключен!");
-                    })
-                    .catch((error) => {
-                        alert("Ошибка подключения: " + error.message);
-                    });
-            } else {
-                alert("Telegram WebApp не доступен. Откройте приложение через Telegram.");
-            }
-        }
+    console.log("Попытка подключения кошелька...");
+    if (window.Telegram && window.Telegram.WebApp) {
+        console.log("WebApp доступен!");
+        const tonConnect = new TonConnect();
+        tonConnect.connect()
+            .then(() => {
+                console.log("Кошелек подключен!");
+                window.Telegram.WebApp.sendData("Кошелек подключен");
+                alert("Кошелек подключен!");
+            })
+            .catch((error) => {
+                console.error("Ошибка подключения: ", error);
+                alert("Ошибка подключения: " + error.message);
+            });
+    } else {
+        console.error("Telegram WebApp не доступен.");
+        alert("Telegram WebApp не доступен. Откройте приложение через Telegram.");
+    }
+}
+
     </script>
 </body>
 </html>
