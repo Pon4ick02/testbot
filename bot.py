@@ -1,11 +1,11 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo, Update
 from telegram.ext import Application, CommandHandler, CallbackContext
 
-TOKEN = "YOUR_BOT_TOKEN"
+TOKEN = "7654469961:AAFYoQGShhojE9FMK8D9-l1K4q2vDKUuSgI"
 
 async def start(update: Update, context: CallbackContext):
     keyboard = [
-        [InlineKeyboardButton("Подключить кошелек", web_app=WebAppInfo(url="YOUR_WEB_APP_URL"))]
+        [InlineKeyboardButton("Подключить кошелек", web_app=WebAppInfo(url="https://testbot-virid-seven.vercel.app/"))]
     ]
     await update.message.reply_text("Нажмите, чтобы подключить кошелек:", reply_markup=InlineKeyboardMarkup(keyboard))
 
