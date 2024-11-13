@@ -13,15 +13,19 @@
 
     <script>
     function connectWallet() {
-        const tonConnect = new TonConnect();
-        tonConnect.connect()
-            .then(() => {
-                window.Telegram.WebApp.sendData("Кошелек подключен");
-            })
-            .catch((error) => {
-                alert("Ошибка подключения: " + error.message);
-            });
-    }
+    console.log("Подключение...");
+    const tonConnect = new TonConnect();
+    tonConnect.connect()
+        .then(() => {
+            console.log("Кошелек подключен");
+            window.Telegram.WebApp.sendData("Кошелек подключен");
+        })
+        .catch((error) => {
+            console.log("Ошибка подключения:", error);
+            alert("Ошибка подключения: " + error.message);
+        });
+}
+
 </script>
 
 </body>
