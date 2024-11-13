@@ -5,28 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Подключить Кошелек</title>
     <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect.min.js"></script>
-
+    <script>
+        // Инициализация Telegram WebApp
+        window.onload = function () {
+            if (window.Telegram && window.Telegram.WebApp) {
+                window.Telegram.WebApp.ready();
+                console.log("Telegram WebApp initialized successfully.");
+            } else {
+                console.error("Telegram WebApp is not available.");
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Выберите кошелек для подключения</h1>
     <button onclick="connectWallet()">Подключить Телеграм кошелек</button>
 
     <script>
-    function connectWallet() {
-    console.log("Подключение...");
-    const tonConnect = new TonConnect();
-    tonConnect.connect()
-        .then(() => {
-            console.log("Кошелек подключен");
-            window.Telegram.WebApp.sendData("Кошелек подключен");
-        })
-        .catch((error) => {
-            console.log("Ошибка подключения:", error);
-            alert("Ошибка подключения: " + error.message);
-        });
-}
-
-</script>
+        function connectWallet() {
+            console.log("Подключение...");
+            try {
+                const tonConnect = new TonConnect();
+                tonConnect.connect()
+                    .then(() => {
+                        console.log("Кошелек подключен");
+                        if (window.Telegram && window.Telegram.WebApp) {
+                            window.Telegram.WebApp.sendData("Кошелек подключен");
+                            alert("Кошелек успешно подключен!");
+                        } else {
+                            console.error("Ошибка: WebApp не доступен.");
+                            alert("Ошибка: WebApp не доступен.");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Ошибка подключения:", error);
+                        alert("Ошибка подключения: " + error.message);
+                    });
+            } catch (error) {
+                console.error("Ошибка инициализации TonConnect:", error);
+                alert("Ошибка инициализации TonConnect: " + error.message);
+            }
+        }
+    </script>
 
 </body>
 </html>
