@@ -4,27 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Подключить Кошелек</title>
-    function connectWallet() {
-    console.log("Пытаемся подключить кошелек...");
-    if (window.Telegram && window.Telegram.WebApp) {
-        console.log("WebApp доступен, пытаемся подключить кошелек...");
-        const tonConnect = new TonConnect();
-        tonConnect.connect()
-            .then(() => {
-                window.Telegram.WebApp.sendData("Кошелек подключен");
-                console.log("Кошелек подключен");
-                alert("Кошелек подключен!");
-            })
-            .catch((error) => {
-                console.log("Ошибка подключения: ", error);
-                alert("Ошибка подключения: " + error.message);
-            });
-    } else {
-        console.log("Telegram WebApp не доступен.");
-        alert("Telegram WebApp не доступен. Откройте приложение через Telegram.");
-    }
-}
-
+    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect.min.js"></script>
 
 </head>
 <body>
