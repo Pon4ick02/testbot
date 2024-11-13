@@ -1,28 +1,28 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Подключить Кошелек</title>-->
-<!--    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect.min.js"></script>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подключить Кошелек</title>
+    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect.min.js"></script>
 
-<!--</head>-->
-<!--<body>-->
-<!--    <h1>Выберите кошелек для подключения</h1>-->
-<!--    <button onclick="connectWallet()">Подключить Телеграм кошелек</button>-->
+</head>
+<body>
+    <h1>Выберите кошелек для подключения</h1>
+    <button onclick="connectWallet()">Подключить Телеграм кошелек</button>
 
-<!--    <script>-->
-<!--    function connectWallet() {-->
-<!--        const tonConnect = new TonConnect();-->
-<!--        tonConnect.connect()-->
-<!--            .then(() => {-->
-<!--                window.Telegram.WebApp.sendData("Кошелек подключен");-->
-<!--            })-->
-<!--            .catch((error) => {-->
-<!--                alert("Ошибка подключения: " + error.message);-->
-<!--            });-->
-<!--    }-->
-<!--</script>-->
+    <script>
+    function connectWallet() {
+        const tonConnect = new TonConnect();
+        tonConnect.connect()
+            .then(() => {
+                window.Telegram.WebApp.sendData("Кошелек подключен");
+            })
+            .catch((error) => {
+                alert("Ошибка подключения: " + error.message);
+            });
+    }
+</script>
 
-<!--</body>-->
-<!--</html>-->
+</body>
+</html>
