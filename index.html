@@ -1,38 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Подключить Кошелек</title>
-    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect.min.js"></script>
-</head>
-<body>
-    <h1>Выберите кошелек для подключения</h1>
-    <button onclick="connectWallet()">Подключить Телеграм кошелек</button>
-
-    <script>
-        // Функция для подключения кошелька
-        function connectWallet() {
-    console.log("Попытка подключения кошелька...");
+<script>
+function connectWallet() {
+    // Проверяем доступность WebApp
     if (window.Telegram && window.Telegram.WebApp) {
-        console.log("WebApp доступен!");
+        console.log("WebApp доступен, пытаемся подключить кошелек...");
         const tonConnect = new TonConnect();
         tonConnect.connect()
             .then(() => {
-                console.log("Кошелек подключен!");
                 window.Telegram.WebApp.sendData("Кошелек подключен");
                 alert("Кошелек подключен!");
             })
             .catch((error) => {
-                console.error("Ошибка подключения: ", error);
                 alert("Ошибка подключения: " + error.message);
+                console.log(error); // Дополнительный вывод ошибки
             });
     } else {
-        console.error("Telegram WebApp не доступен.");
         alert("Telegram WebApp не доступен. Откройте приложение через Telegram.");
+        console.log("WebApp не доступен.");
     }
 }
-
-    </script>
-</body>
-</html>
+</script>
