@@ -12,14 +12,16 @@
 
     <script>
         function connectWallet() {
-            const wallet = new TonConnect();
-            wallet.onStatusChange((status) => {
-                alert("Статус: " + status);
-            });
-            wallet.connect().catch((error) => {
-                alert("Ошибка подключения: " + error.message);
-            });
-        }
+    const wallet = new TonConnect();
+    wallet.connect()
+        .then(() => {
+            window.Telegram.WebApp.sendData("Кошелек подключен");
+        })
+        .catch((error) => {
+            alert("Ошибка подключения: " + error.message);
+        });
+}
+
     </script>
 </body>
 </html>
