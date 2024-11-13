@@ -4,28 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Подключить Кошелек</title>
-    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect.min.js"></script>
+    <!-- Используем новый CDN для библиотеки TonConnect -->
+    <script src="https://cdn.jsdelivr.net/npm/@tonconnect/sdk@latest/dist/tonconnect.min.js"></script>
     <script>
-        // Инициализация Telegram WebApp
-        window.onload = function () {
-            if (window.Telegram && window.Telegram.WebApp) {
-                window.Telegram.WebApp.ready();
-                console.log("Telegram WebApp initialized successfully.");
+        window.onload = function() {
+            // Проверяем наличие TonConnect после загрузки страницы
+            if (typeof TonConnect !== 'undefined') {
+                console.log('TonConnect SDK загружен.');
             } else {
-                console.error("Telegram WebApp is not available.");
+                console.error('TonConnect SDK не найден.');
             }
         }
     </script>
 </head>
 <body>
     <h1>Выберите кошелек для подключения</h1>
-    <button onclick="connectWallet()">Подключить Телеграм кошелек</button>
+    <button id="connectButton">Подключить Телеграм кошелек</button>
 
     <script>
+        // Проверка, доступен ли TonConnect перед использованием
+        if (typeof TonConnect === 'undefined') {
+            console.error('TonConnect SDK не найден. Убедитесь, что библиотека загружена.');
+        } else {
+            console.log('TonConnect SDK загружен.');
+        }
+
+        // Обработчик события на кнопке
+        document.getElementById('connectButton').addEventListener('click', function() {
+            console.log('Кнопка нажата');
+            connectWallet();
+        });
+
         function connectWallet() {
-            console.log("Подключение...");
+            console.log("Попытка подключиться к кошельку...");
             try {
+                // Создание объекта TonConnect
                 const tonConnect = new TonConnect();
+                console.log("TonConnect объект создан.");
+
+                // Подключение к кошельку
                 tonConnect.connect()
                     .then(() => {
                         console.log("Кошелек подключен");
